@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Operators - Student Grades</title>
+    <link rel="stylesheet" href="style.css" class="style">
+
+</head>
+<body>
+
+<script>
+    var students = [
+        {firstName: "Christine", middleName: "Bonito", lastName: "Rolda", courseAndYear: "BSIT - 2nd Year", prelim: 90, midterm: 92, preFinal: 88, final: 94},
+        {firstName: "Alayssa", middleName: "Latoga", lastName: "Silva", courseAndYear: "BSCS - 3rd Year", prelim: 88, midterm: 85, preFinal: 92, final: 90},
+        {firstName: "John Rey", middleName: "Amado", lastName: "Apable", courseAndYear: "BSIT - 1st Year", prelim: 92, midterm: 88, preFinal: 91, final: 88},
+    ];
+
+    function calculateAverage(prelim, midterm, preFinal, final) {
+        return (prelim + midterm + preFinal + final) / 4;
+    }
+
+    students.forEach(function(student) {
+        student.average = calculateAverage(student.prelim, student.midterm, student.preFinal, student.final);
+    });
+
+    students.sort(function(a, b) {
+        return b.average - a.average;
+    });
+
+    for (var i = 0; i < Math.min(3, students.length); i++) {
+        students[i].rank = i + 1;
+    }
+
+    document.write("<table>");
+    document.write("<tr><th>Rank</th><th>First Name</th><th>Middle Name</th><th>Last Name</th><th>Course and Year</th><th>Prelim</th><th>Midterm</th><th>Pre-final</th><th>Final</th><th>Average</th></tr>");
+    
+    students.forEach(function(student) {
+        document.write("<tr>");
+        document.write("<td>" + (student.rank ? student.rank : "") + "</td>");
+        document.write("<td>" + student.firstName + "</td>");
+        document.write("<td>" + student.middleName + "</td>");
+        document.write("<td>" + student.lastName + "</td>");
+        document.write("<td>" + student.courseAndYear + "</td>");
+        document.write("<td>" + student.prelim + "</td>");
+        document.write("<td>" + student.midterm + "</td>");
+        document.write("<td>" + student.preFinal + "</td>");
+        document.write("<td>" + student.final + "</td>");
+        document.write("<td>" + student.average.toFixed(2) + "</td>");
+        document.write("</tr>");
+    });
+
+    document.write("</table>");
+</script>
+
+</body>
+</html>
